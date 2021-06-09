@@ -1,1 +1,1 @@
-web: gunicorn hymn256.wsgi
+web: gunicorn hymn256/hymn256/wsgi.py
