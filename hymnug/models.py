@@ -7,19 +7,42 @@ from django.utils import timezone
 class Language(models.Model):
     name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=3)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField()
 
     def __str__(self):
         return self.name
+
+
+class HymnNumber(models.Model):
+    number = models.IntegerField(null=False, unique=True)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField()
+
+    def __str__(self):
+        return self.number
 
 
 class Hymn(models.Model):
-    name = models.CharField(max_length=255)
+    hymn_number = models.ForeignKey(HymnNumber, on_delete=models.CASCADE, related_name='hymn_number')
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, related_name='hymn_language')
+    title = models.CharField(max_length=255)
     lyrics = models.CharField(max_length=25525)
-    url = models.CharField(max_length=255)
-    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField()
 
     def __str__(self):
-        return self.name
+        return self.title
+
+
+class HymnFile(models.Model):
+    lyrics = models.ForeignKey(Hymn, on_delete=models.CASCADE, related_name='song_lyrics')
+    url = models.CharField(max_length=255, blank=True)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField()
+
+    def __str__(self):
+        return self.lyrics
 
 
 class Ad(models.Model):
@@ -27,6 +50,7 @@ class Ad(models.Model):
     url = models.CharField(max_length=255, null=True)
     image_url = models.CharField(max_length=255, null=True)
     created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField()
     expired = models.DateTimeField()
 
     def __str__(self):
