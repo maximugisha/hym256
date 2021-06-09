@@ -19,7 +19,7 @@ class HymnNumber(models.Model):
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField()
 
-    def __str__(self):
+    def __int__(self):
         return self.number
 
 
@@ -41,7 +41,7 @@ class HymnFile(models.Model):
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField()
 
-    def __str__(self):
+    def __int__(self):
         return self.lyrics
 
 

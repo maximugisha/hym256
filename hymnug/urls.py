@@ -5,6 +5,8 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'languages', views.LanguageViewSet)
 router.register(r'hymns', views.HymnViewSet)
+router.register(r'hymn_numbers', views.HymnNumberViewSet)
+router.register(r'hymn_files', views.HymnFileViewSet)
 router.register(r'ads', views.AdViewSet)
 
 
