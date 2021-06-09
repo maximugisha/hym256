@@ -24,7 +24,8 @@ class Hymn(models.Model):
 
 class Ad(models.Model):
     name = models.CharField(max_length=255)
-    url = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, null=True)
+    image_url = models.CharField(max_length=255, null=True)
     created = models.DateTimeField(default=timezone.now)
     expired = models.DateTimeField()
 
