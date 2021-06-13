@@ -17,10 +17,20 @@ class HymnNumberViewSet(viewsets.ModelViewSet):
     queryset = HymnNumber.objects.all().order_by('number')
     serializer_class = HymnNumberSerializer
 
-
+#--- Filter file by hymn id ---#
+class HymnFileFilter(filters.FilterSet):
+    class Meta:
+        model = HymnFile
+        fields = {
+            'lyrics' : ['exact'],
+        }
+        
 class HymnFileViewSet(viewsets.ModelViewSet):
     queryset = HymnFile.objects.all().order_by('lyrics')
     serializer_class = HymnFileSerializer
+    lookup_field = 'lyrics'
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = HymnFileFilter
 
 
 class AdViewSet(viewsets.ModelViewSet):
@@ -39,7 +49,7 @@ class HymnFilter(filters.FilterSet):
 class HymnViewSet(viewsets.ModelViewSet):
     queryset = Hymn.objects.all().order_by('title')
     serializer_class = HymnSerializer
-    lookup_field = 'language_id'
+    lookup_field = 'language'
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = HymnFilter
     
