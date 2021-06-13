@@ -17,7 +17,7 @@ class HymnNumberViewSet(viewsets.ModelViewSet):
     queryset = HymnNumber.objects.all().order_by('number')
     serializer_class = HymnNumberSerializer
 
-#--- Filter file by hymn id ---#
+#--- Filter file by lyrics id ---#
 class HymnFileFilter(filters.FilterSet):
     class Meta:
         model = HymnFile
