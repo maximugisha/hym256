@@ -23,6 +23,7 @@ class HymnFileViewSet(viewsets.ModelViewSet):
 
 class HymnViewSet(viewsets.ModelViewSet):
     queryset = Hymn.objects.all().order_by('title')
+    filterset_fields = ['language']
     serializer_class = HymnSerializer
 
 
