@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -27,7 +28,7 @@ class Hymn(models.Model):
     hymn_number = models.ForeignKey(HymnNumber, on_delete=models.CASCADE, related_name='hymn_number')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, related_name='hymn_language')
     title = models.CharField(max_length=255)
-    lyrics = models.CharField(max_length=25525)
+    lyrics = RichTextField()
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField()
 
