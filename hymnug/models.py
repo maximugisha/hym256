@@ -28,7 +28,7 @@ class Hymn(models.Model):
     hymn_number = models.ForeignKey(HymnNumber, on_delete=models.CASCADE, related_name='hymn_number')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, related_name='hymn_language')
     title = models.CharField(max_length=255)
-    lyrics = models.TextField
+    lyrics = models.TextField(max_length=None, blank=True)
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField()
 
