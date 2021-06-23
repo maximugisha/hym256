@@ -28,12 +28,12 @@ class Hymn(models.Model):
     hymn_number = models.ForeignKey(HymnNumber, on_delete=models.CASCADE, related_name='hymn_number')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, related_name='hymn_language')
     title = models.CharField(max_length=255)
-    lyrics = RichTextField()
+    lyrics = models.TextField
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField()
 
-    def __unicode__(self):
-        return self.hymn_number
+    def __str__(self):
+        return self.title
 
 
 class HymnFile(models.Model):
@@ -41,6 +41,9 @@ class HymnFile(models.Model):
     url = models.CharField(max_length=255, blank=True)
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField()
+
+    def __str__(self):
+        return str(self.lyrics)
 
     def __unicode__(self):
         return self.lyrics

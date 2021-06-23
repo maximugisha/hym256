@@ -91,23 +91,23 @@ DATABASES = {
 
 # Localhost db
 
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'hymn',
-    #     'USER': 'Maximo',
-    #     'PASSWORD': 'UPbeat123',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    # }
-#heroku db
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fh67q3qodaki3dms',
-        'USER': 'he0korgvmdwctwac',
-        'PASSWORD': 'g8qc4kc9qpsbg3cz',
-        'HOST': 'dfkpczjgmpvkugnb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        'NAME': 'hymn',
+        'USER': 'maximo',
+        'PASSWORD': 'UPbeat123',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
+# #heroku db
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'fh67q3qodaki3dms',
+#         'USER': 'he0korgvmdwctwac',
+#         'PASSWORD': 'g8qc4kc9qpsbg3cz',
+#         'HOST': 'dfkpczjgmpvkugnb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+#         'PORT': '3306',
+#     }
 }
 
 
