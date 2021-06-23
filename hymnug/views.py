@@ -11,10 +11,6 @@ from .models import Language, Hymn, Ad, HymnNumber, HymnFile
 # Create your views here.
 
 def index(request):
-    # queryset1 = Hymn.objects.all().order_by('title')
-    # queryset2 = HymnFile.objects.all().order_by('lyrics')
-    # print(queryset1)
-    # print(queryset2)
     return HttpResponse('Welcome to Tuyimbe App')
 
 
@@ -31,7 +27,7 @@ class HymnNumberViewSet(viewsets.ModelViewSet):
 
 
 class HymnFileViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     queryset = HymnFile.objects.all().order_by('lyrics')
     serializer_class = HymnFileSerializer
     filter_backends = [DjangoFilterBackend]
@@ -44,7 +40,7 @@ class AdViewSet(viewsets.ModelViewSet):
 
 
 class HymnViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     queryset = Hymn.objects.all()
     serializer_class = HymnSerializer
     filter_backends = [DjangoFilterBackend]
