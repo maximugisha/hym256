@@ -16,6 +16,7 @@ class LanguageViewSet(viewsets.ModelViewSet):
 
 
 class HymnNumberViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = HymnNumber.objects.all().order_by('number')
     serializer_class = HymnNumberSerializer
 
@@ -30,6 +31,7 @@ class HymnFileFilter(filters.FilterSet):
 
 
 class HymnFileViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = HymnFile.objects.all().order_by('lyrics')
     serializer_class = HymnFileSerializer
     lookup_field = 'lyrics'
@@ -52,6 +54,7 @@ class HymnFilter(filters.FilterSet):
 
 
 class HymnViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = Hymn.objects.all().order_by('title')
     serializer_class = HymnSerializer
     lookup_field = 'language'
