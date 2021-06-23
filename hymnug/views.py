@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework import generics
 from django_filters import rest_framework as filters
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import LanguageSerializer, HymnSerializer, AdSerializer, HymnNumberSerializer, HymnFileSerializer
 from .models import Language, Hymn, Ad, HymnNumber, HymnFile
@@ -9,6 +10,7 @@ from .models import Language, Hymn, Ad, HymnNumber, HymnFile
 # Create your views here.
 
 class LanguageViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = Language.objects.all().order_by('name')
     serializer_class = LanguageSerializer
 
