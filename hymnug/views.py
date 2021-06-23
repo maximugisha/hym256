@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from django.shortcuts import HttpResponse
+
 from rest_framework import generics
 from django_filters import rest_framework as filters
 from rest_framework.permissions import IsAuthenticated
@@ -8,6 +10,10 @@ from .models import Language, Hymn, Ad, HymnNumber, HymnFile
 
 
 # Create your views here.
+
+def index(request):
+    return HttpResponse('Welcome to Tuyimbe App ')
+
 
 class LanguageViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
@@ -21,49 +27,17 @@ class HymnNumberViewSet(viewsets.ModelViewSet):
     serializer_class = HymnNumberSerializer
 
 
-# --- Filter file by lyrics id ---#
-class HymnFileFilter(filters.FilterSet):
-    class Meta:
-        model = HymnFile
-        fields = {
-            'lyrics': ['exact'],
-        }
-
-
 class HymnFileViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = HymnFile.objects.all().order_by('lyrics')
     serializer_class = HymnFileSerializer
-    lookup_field = 'lyrics'
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_class = HymnFileFilter
-
 
 class AdViewSet(viewsets.ModelViewSet):
     queryset = Ad.objects.all().order_by('name')
     serializer_class = AdSerializer
 
 
-# --- Filter hymns by language id ---#
-class HymnFilter(filters.FilterSet):
-    class Meta:
-        model = Hymn
-        fields = {
-            'language': ['exact'],
-        }
-
-
 class HymnViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
-    queryset = Hymn.objects.all().order_by('title')
+    queryset = Hymn.objects.all()
     serializer_class = HymnSerializer
-    lookup_field = 'language'
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_class = HymnFilter
-
-# class HymnViewSet(generics.ListCreateAPIView):
-#    queryset = Hymn.objects.all()
-#    serializer_class = HymnSerializer
-#    lookup_field = 'language'
-#    filter_backends = (filters.DjangoFilterBackend,)
-#    filterset_class = HymnFilter
